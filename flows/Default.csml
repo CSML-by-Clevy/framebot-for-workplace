@@ -1,0 +1,140 @@
+start:
+  if (_metadata.first_name) do firstname = _metadata.first_name
+  if (_metadata.firstname) do firstname = _metadata.firstname
+
+  say Typing(1000)
+  if (firstname) say "Bonjour {{firstname}} !"
+  else say "Bonjour !"
+
+  say Typing(1500)
+  say "Je suis FrameBot et je vais t'aider à ajouter de jolis cadres à ta photo de profil Workplace."
+  say Wait(3000)
+
+  remember pic = _metadata.picture.data
+  if (!pic || pic.is_silhouette) {
+    say Typing(1500)
+    say "Il me semble que je n'ai pas encore de photo de toi..."
+    goto getPicFromUser
+  }
+
+  say Typing(1500)
+  say "J'ai déjà pu récupérer ta photo de profil, la voici:"
+  say Image(pic.url)
+  say Wait(3000)
+  goto validateProfilePic
+
+
+validateProfilePic:
+  say Typing(1500)
+  say Question(
+    "Est-ce que tu veux utiliser celle-ci, ou en charger une autre ?",
+    button_type="quick_reply",
+    buttons=[Button("Celle-ci !") as y, Button("Une autre...") as n]
+  )
+  hold
+
+  if (event match y) {
+    say "OK, c'est noté !"
+    remember userpic = pic.url
+    goto selectFrameIntro
+  }
+
+  say "OK, on va en charger une autre alors."
+  goto getPicFromUser
+
+
+getPicFromUser:
+  say Typing(1500)
+  say "Envoie-moi une photo de toi ! 📷"
+  hold
+
+  say "C'est une belle photo, je trouve..."
+  remember userpic = event
+  goto selectFrameIntro
+
+
+selectFrameIntro:
+
+  say Typing(1500)
+  say "D'accord, maintenant sélectionnons ensemble un cadre pour ajouter sur ta photo."
+  say Typing(1500)
+  say "C'est l'été, tu prends bientôt des vacances peut-être ? C'est l'occasion de le montrer !"
+  goto selectFrame
+
+selectFrame:
+  /**
+   * Update the available frames in the section below!
+   * Frames must be in PNG format, at a publicly-available address.
+   */
+  do valise_url = "https://bit.ly/clevy-frame-vacances"
+  do plage_url = "https://bit.ly/clevy-frame-plage"
+  do feuilles_url = "https://bit.ly/clevy-frame-summer"
+  do blm_url = "https://bit.ly/clevy-frame-blm"
+  do transform_url = "https://bit.ly/clevy-frame-transform"
+
+  say Carousel(Shuffle([
+    Card(
+      "Les vacances",
+      subtitle="Choisir la valise pour montrer que tu es en congés !",
+      image_url=valise_url,
+      buttons=[Button("Sélectionner", payload="valise") as valise]
+    ),
+    Card(
+      "La plage",
+      subtitle="Si tu prends des vacances à la mer, choisis ce cadre !",
+      image_url=plage_url,
+      buttons=[Button("Sélectionner", payload="plage") as plage]
+    ),
+    Card(
+      "Les feuilles",
+      subtitle="Enfin l'été ! Ces feuilles vont égayer ta photo...",
+      image_url=feuilles_url,
+      buttons=[Button("Sélectionner", payload="feuilles") as feuilles]
+    ),
+    Card(
+      "Black Lives Matter",
+      subtitle="Montrez votre soutien au mouvement #BLM",
+      image_url=blm_url,
+      buttons=[Button("Sélectionner", payload="blm") as blm]
+    ),
+    Card(
+      "WP Transform",
+      subtitle="Je suis à Workplace Transform",
+      image_url=transform_url,
+      buttons=[Button("Sélectionner", payload="transform") as transform]
+    ),
+  ]))
+  hold
+
+  if (event match valise) remember frame_url = valise_url
+  else if (event match plage) remember frame_url = plage_url
+  else if (event match feuilles) remember frame_url = feuilles_url
+  else if (event match transform) remember frame_url = transform_url
+  else if (event match blm) remember frame_url = blm_url
+  else {
+    say "Je n'ai pas compris... choisis un des cadres proposés !"
+    goto selectFrame
+  }
+
+  do framed = Fn(
+    "picture_frame",
+    base_url=userpic,
+    frame_url=frame_url
+  )
+
+  remember framed_url = framed.result
+
+  say "Voilà, ton image est prête !"
+  say Image(framed_url)
+  say Wait(3000)
+  say Typing(1500)
+  say "Mets-la en photo de profil pour que tes collègues puissent l'admirer plus facilement !"
+  say Wait(3000)
+
+  say Typing(1500)
+  say Question(
+    "Reviens me voir régulièrement pour avoir de nouveaux cadres ! A bientôt 👋",
+    button_type="quick_reply",
+    buttons=[Button("Recommencer")]
+  )
+  goto end

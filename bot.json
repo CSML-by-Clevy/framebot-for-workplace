@@ -1,0 +1,51 @@
+{
+  "id": "0fc668e6-c51a-43d4-8f96-552170dc29eb",
+  "name": "FrameBot pour Workplace",
+  "description": "Aidez vos utilisateurs à ajouter des cadres de saison à leur photo de profil Workplace!",
+  "default_flow": "Default",
+  "flows": [
+    {
+      "name": "Default",
+      "description": "Default custom flow",
+      "commands": []
+    }
+  ],
+  "files": [
+    {
+      "name": "blm.png",
+      "description": null
+    },
+    {
+      "name": "plage.png",
+      "description": null
+    },
+    {
+      "name": "summer.png",
+      "description": null
+    },
+    {
+      "name": "transform.png",
+      "description": null
+    },
+    {
+      "name": "vacances.png",
+      "description": null
+    }
+  ],
+  "functions": [],
+  "apps": [
+    {
+      "name": "picture_frame",
+      "description": "Add any custom frame to a picture!",
+      "args": [
+        "base_url=\"\"",
+        "frame_url=\"\""
+      ],
+      "runtime": "nodejs12.x",
+      "handler": "index.handler",
+      "environment": {},
+      "app_id": "28382486-0e1a-44a0-ab95-540e11a0b6e1",
+      "version": "1.0.0"
+    }
+  ]
+}
