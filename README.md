@@ -8,7 +8,7 @@ Grâce à ce chatbot, installable en quelques clics gratuitement sur Workplace, 
 
 ## Démonstration
 
-Une vidéo de démo de ce bot est visible à cette adresse : https://drive.google.com/file/d/1-e7gDc6n1LOkXkNgQGFY6Hn36ZDkkxpM/view?usp=sharing
+Une vidéo de démo de ce bot (comprenant également l'installation complète) est visible à cette adresse : https://drive.google.com/file/d/19yo84tl_FQGtr4Jj6zRJ2dWXNyPLUbes/view?usp=sharing
 
 ## Installation
 
