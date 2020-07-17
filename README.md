@@ -6,6 +6,10 @@ Grâce à ce chatbot, installable en quelques clics gratuitement sur Workplace, 
 
 ![](./resources/example.png)
 
+## Démonstration
+
+Une vidéo de démo de ce bot est visible à cette adresse : https://drive.google.com/file/d/1-e7gDc6n1LOkXkNgQGFY6Hn36ZDkkxpM/view?usp=sharing
+
 ## Installation
 
 1. Créer un compte gratuit sur [CSML Studio](https://studio.csml.dev)
