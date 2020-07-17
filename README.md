@@ -16,6 +16,6 @@ Grâce à ce chatbot, installable en quelques clics gratuitement sur Workplace, 
 1. Aller dans la section "Channels", cliquer sur "Add Workplace Chat" sous "Connect new channel"
 1. Suivre les instructions à l'écran. C'est prêt !
 
-Vous pouvez également changer les frames en modifiant le code dans les sections concernées du bot (lignes 66 et suivantes).
+Vous pouvez également changer les frames en modifiant le code dans les sections concernées du bot (lignes 66 et suivantes). Pour valider les changements, n'oubliez pas de cliquer sur "Build" en haut à droite de l'écran d'édition du bot!
 
 La documentation du CSML est disponible sur [docs.csml.dev](https://docs.csml.dev/studio). Pour toute question ou besoin spécifique: [contact@csml.dev](mailto:contact@csml.dev)
